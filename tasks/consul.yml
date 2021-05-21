@@ -1,0 +1,13 @@
+---
+- name: Create Consul service definition
+  include_role: name=consul-service
+  vars:
+    consul_config_name: '{{ matterbridge_cont_name }}'
+    consul_services:
+      - name: '{{ matterbridge_cont_name }}'
+        tags: ['matterbridge', 'bridge']
+        checks:
+          - id: '{{ matterbridge_cont_name }}-status'
+            name: 'MatterBridge health'
+            type: 'script'
+            script: '/usr/bin/pgrep -xl matterbridge'

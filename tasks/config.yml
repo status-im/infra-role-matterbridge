@@ -1,0 +1,16 @@
+---
+- name: MatterBridge | Create container directory
+  file:
+    path: '{{ matterbridge_cont_vol }}'
+    state: directory
+    owner: dockremap
+    group: docker
+    recurse: true
+
+- name: MatterBridge | Generate YAML configuration
+  template:
+    src: 'matterbridge.yaml.j2'
+    dest: '{{ matterbridge_cont_vol }}/matterbridge.yaml'
+    owner: dockremap
+    group: docker
+  register: config_file

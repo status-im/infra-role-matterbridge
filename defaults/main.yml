@@ -1,0 +1,16 @@
+---
+matterbridge_version: 'latest'
+matterbridge_cont_image: 'statusteam/matterbridge:{{ matterbridge_version }}'
+matterbridge_cont_name: 'matterbridge'
+matterbridge_cont_vol: '/docker/{{ matterbridge_cont_name }}'
+matterbridge_debug: false
+matterbridge_nick: bridge
+matterbridge_ens_name: bridge.stateofus.eth
+
+# configuration for gateways
+matterbridge_gateways: []
+
+# general container management
+cont_state: started
+cont_recreate: false
+cont_restart: false

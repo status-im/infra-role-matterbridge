@@ -1,0 +1,15 @@
+---
+- name: MatterBridge | Create container
+  docker_container:
+    name: '{{ matterbridge_cont_name }}'
+    image: '{{ matterbridge_cont_image }}'
+    pull: true
+    restart_policy: always
+    state: '{{ cont_state }}'
+    recreate: '{{ cont_recreate }}'
+    restart: '{{ config_file.changed or cont_restart }}'
+    volumes:
+      - '{{ matterbridge_cont_vol }}/matterbridge.yaml:/matterbridge.yaml'
+    command: |
+      -conf=/matterbridge.yaml
+      {% if matterbridge_debug %}-debug{% endif %}
