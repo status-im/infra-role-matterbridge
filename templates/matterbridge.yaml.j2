@@ -51,7 +51,7 @@ gateway:
       - account: "discord.{{ discord_srv.srv }}"
         channel: "{{ discord_srv.ch }}"
         options:
-          WebhookURL: "{{lookup("passwordstore", "cloud/Discord/webhooks/"+discord_srv.srv+"/"+discord_srv.ch)}}"
+          WebhookURL: "{{lookup("bitwarden", "Discord/"+discord_srv.srv+"/webhooks", field=discord_srv.ch)}}"
     {% endfor %}
 
 {% endfor %}
