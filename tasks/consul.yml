@@ -11,3 +11,17 @@
             name: 'MatterBridge health'
             type: 'script'
             script: '/usr/bin/pgrep -xl matterbridge'
+
+- name: Create Consul service definition for API
+  include_role: name=consul-service
+  when: '{{ matterbridge_api_enabled }}'
+  vars:
+    consul_config_name: '{{ matterbridge_cont_name }}-api'
+    consul_services:
+      - name: '{{ matterbridge_cont_name }}-api'
+        tags: ['matterbridge', 'bridge']
+        checks:
+          - id: '{{ matterbridge_cont_name }}-api-health'
+            name: 'MatterBridge API health'
+            type: 'script'
+            script: 'curl --fail http://localhost:{{ matterbridge_api_port }}/api/health'

@@ -30,6 +30,20 @@ matterbridge_gateways:
   - { status: "movies", discord: [{ srv: "status-pub", ch: "movies" }] }
 ```
 
+# API
+
+To use the Matterbridge API it must be enabled with `matterbridge_api_enabled: true`.
+Currently only a single API (called `api`) is supported.
+
+It can be used in a gateway like this:
+
+```
+- { discord: [{ srv: "vac", ch: "waku" }], api: ["api"]}
+```
+
+The API is running on port 4242 by default (`matterbridge_api_port`). More info
+about the API can be found on the [Matterbridge wiki](https://github.com/42wim/matterbridge/wiki/Api).
+
 # Known Issues
 
 If your bridge is posting in a Discord channel but doesn't receive mesages from it you might have to adjust the channel-level permissions to give the bot message read rights.

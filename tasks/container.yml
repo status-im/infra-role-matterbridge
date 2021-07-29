@@ -10,6 +10,9 @@
     restart: '{{ config_file.changed or cont_restart }}'
     volumes:
       - '{{ matterbridge_cont_vol }}/matterbridge.yaml:/matterbridge.yaml'
+    ports: '{{ [lookup("vars", "docker_api_port")] if lookup("vars", "matterbridge_api_enabled") else [] }}'
     command: |
       -conf=/matterbridge.yaml
       {% if matterbridge_debug %}-debug{% endif %}
+  vars:
+    docker_api_port: '{{ matterbridge_api_port }}:{{ matterbridge_api_port }}'
