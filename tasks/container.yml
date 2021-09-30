@@ -1,18 +1,16 @@
 ---
+- name: MatterBridge | Create compose file
+  template:
+    src: 'docker-compose.yml.j2'
+    dest: '{{ matterbridge_compose_file }}'
+    owner: 'dockremap'
+    group: 'docker'
+    mode: 0644
+
 - name: MatterBridge | Create container
-  docker_container:
-    name: '{{ matterbridge_cont_name }}'
-    image: '{{ matterbridge_cont_image }}'
+  docker_compose:
+    project_src: '{{ matterbridge_service_path }}'
     pull: true
-    restart_policy: always
-    state: '{{ cont_state }}'
-    recreate: '{{ cont_recreate }}'
-    restart: '{{ config_file.changed or cont_restart }}'
-    volumes:
-      - '{{ matterbridge_cont_vol }}/matterbridge.yaml:/matterbridge.yaml'
-    ports: '{{ [lookup("vars", "docker_api_port")] if lookup("vars", "matterbridge_api_enabled") else [] }}'
-    command: |
-      -conf=/matterbridge.yaml
-      {% if matterbridge_debug %}-debug{% endif %}
-  vars:
-    docker_api_port: '{{ matterbridge_api_port }}:{{ matterbridge_api_port }}'
+    state: '{{ compose_state }}'
+    restarted: '{{ compose_restart }}'
+    recreate: '{{ compose_recreate }}'

@@ -1,8 +1,15 @@
 ---
+matterbridge_service_name: 'matterbridge'
+matterbridge_service_path: '/docker/{{ matterbridge_service_name }}'
+matterbridge_compose_file: '{{ matterbridge_service_path }}/docker-compose.yml'
+
+# container
 matterbridge_version: 'latest'
 matterbridge_cont_image: 'statusteam/matterbridge:{{ matterbridge_version }}'
-matterbridge_cont_name: 'matterbridge'
-matterbridge_cont_vol: '/docker/{{ matterbridge_cont_name }}'
+matterbridge_cont_name: '{{ matterbridge_service_name }}'
+matterbridge_cont_vol: '{{ matterbridge_service_path }}/app'
+
+# general config
 matterbridge_debug: false
 matterbridge_nick: bridge
 matterbridge_ens_name: bridge.stateofus.eth
@@ -18,6 +25,6 @@ matterbridge_gateways: []
 matterbridge_bridges: {}
 
 # general container management
-cont_state: started
-cont_recreate: false
-cont_restart: false
+compose_recreate: 'smart'
+compose_state: 'present'
+compose_restart: false

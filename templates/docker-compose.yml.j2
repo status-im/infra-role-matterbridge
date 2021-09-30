@@ -1,0 +1,18 @@
+---
+version: '3.7'
+services:
+  app:
+    container_name: '{{ matterbridge_cont_name }}'
+    image: '{{ matterbridge_cont_image }}'
+    restart: 'always'
+    volumes:
+      - '{{ matterbridge_cont_vol }}/matterbridge.yaml:/matterbridge.yaml'
+    command: |
+      -conf=/matterbridge.yaml
+{% if matterbridge_debug %}
+      -debug
+{% endif %}
+{% if matterbridge_api_enabled %}
+    ports:
+      - '{{ matterbridge_api_port }}:{{ matterbridge_api_port }}'
+{% endif %}
