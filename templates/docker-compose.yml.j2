@@ -4,7 +4,12 @@ services:
   app:
     container_name: '{{ matterbridge_cont_name }}'
     image: '{{ matterbridge_cont_image }}'
-    restart: 'always'
+    deploy:
+      restart_policy:
+        condition: 'on-failure'
+        max_attempts: 3
+        delay: '10s'
+        window: '60s'
     volumes:
       - '{{ matterbridge_cont_vol }}/matterbridge.yaml:/matterbridge.yaml'
     command: |
