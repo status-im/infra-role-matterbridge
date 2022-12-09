@@ -12,5 +12,5 @@
     project_src: '{{ matterbridge_service_path }}'
     pull: true
     state: '{{ compose_state }}'
-    restarted: '{{ compose_restart }}'
+    restarted: '{{ config_file.changed or compose_restart }}'
     recreate: '{{ compose_recreate }}'
