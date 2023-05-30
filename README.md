@@ -15,7 +15,7 @@ matterbridge_bridges:
   status:
     bridge:
       Nick: 'bridge.stateofus.eth'
-      PrivateKey: '0x04abcXYZ'
+      Token: '0x04abcXYZ...'
       RemoteNickFormat: '**{NICK}**@*{PROTOCOL}*: '
 
   discord:
