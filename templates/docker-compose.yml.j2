@@ -11,7 +11,8 @@ services:
         delay: '10s'
         window: '60s'
     volumes:
-      - '{{ matterbridge_cont_vol }}/matterbridge.yaml:/matterbridge.yaml'
+      - '{{ matterbridge_cont_vol }}/data:/data'
+      - '{{ matterbridge_cont_vol }}/config/matterbridge.yaml:/matterbridge.yaml:ro'
     command: |
       -conf=/matterbridge.yaml
 {% if matterbridge_debug %}
