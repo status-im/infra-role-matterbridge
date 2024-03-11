@@ -1,6 +1,6 @@
 ---
 - name: Create Consul service definition
-  include_role: name=consul-service
+  include_role: name=infra-role-consul-service
   vars:
     consul_config_name: '{{ matterbridge_service_name }}'
     consul_services:
@@ -13,7 +13,7 @@
             script: '/usr/bin/pgrep -xl matterbridge'
 
 - name: Create Consul service definition for API
-  include_role: name=consul-service
+  include_role: name=infra-role-consul-service
   when: '{{ matterbridge_api_enabled }}'
   vars:
     consul_config_name: '{{ matterbridge_service_name }}-api'
