@@ -13,6 +13,7 @@ services:
     volumes:
       - '{{ matterbridge_cont_vol }}/data:/data'
       - '{{ matterbridge_cont_vol }}/config/matterbridge.yaml:/matterbridge.yaml:ro'
+    working_dir: '/data'
     command: |
       -conf=/matterbridge.yaml
 {% if matterbridge_debug %}
