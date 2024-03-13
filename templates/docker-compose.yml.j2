@@ -10,6 +10,10 @@ services:
         max_attempts: 3
         delay: '10s'
         window: '60s'
+    environment:
+{% for key,val in matterbridge_cont_env.items() %}
+      {{ key }}: '{{ val }}'
+{% endfor %}
     volumes:
       - '{{ matterbridge_cont_vol }}/data:/data'
       - '{{ matterbridge_cont_vol }}/config:/config:ro'

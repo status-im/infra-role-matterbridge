@@ -29,6 +29,11 @@ matterbridge_gateways:
   - { status: "music",  discord: [{ srv: "status-pub", ch: "music" }] }
   - { status: "movies", discord: [{ srv: "status-pub", ch: "movies" }] }
 ```
+You can also provide environment variables to the container:
+```
+matterbridge_cont_env:
+  SUPER_SECRET_CREDENTIAL: 'hunter2'
+```
 
 # API
 
