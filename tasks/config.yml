@@ -17,3 +17,11 @@
     owner: dockremap
     group: docker
   register: config_file
+
+- name: MatterBridge | Copy over Status node config
+  copy:
+    src:   'node_config.json'
+    dest:  '{{ matterbridge_cont_vol }}/config/node.json'
+    owner: 'dockremap'
+    group: 'docker'
+  register: config_file

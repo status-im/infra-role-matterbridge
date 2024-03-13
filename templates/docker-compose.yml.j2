@@ -12,10 +12,10 @@ services:
         window: '60s'
     volumes:
       - '{{ matterbridge_cont_vol }}/data:/data'
-      - '{{ matterbridge_cont_vol }}/config/matterbridge.yaml:/matterbridge.yaml:ro'
+      - '{{ matterbridge_cont_vol }}/config:/config:ro'
     working_dir: '/data'
     command: |
-      -conf=/matterbridge.yaml
+      -conf=/config/matterbridge.yaml
 {% if matterbridge_debug %}
       -debug
 {% endif %}
