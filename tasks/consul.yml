@@ -4,24 +4,11 @@
   vars:
     consul_config_name: '{{ matterbridge_service_name }}'
     consul_services:
-      - name: '{{ matterbridge_service_name }}'
+      - id:   '{{ matterbridge_service_name }}'
+        name: '{{ matterbridge_service_name }}'
         tags: ['matterbridge', 'bridge']
         checks:
-          - id: '{{ matterbridge_service_name }}-health'
-            name: 'MatterBridge health'
-            type: 'script'
-            script: '/usr/bin/pgrep -xl matterbridge'
-
-- name: Create Consul service definition for API
-  include_role: name=infra-role-consul-service
-  when: '{{ matterbridge_api_enabled }}'
-  vars:
-    consul_config_name: '{{ matterbridge_service_name }}-api'
-    consul_services:
-      - name: '{{ matterbridge_service_name }}-api'
-        tags: ['matterbridge', 'bridge']
-        checks:
-          - id: '{{ matterbridge_service_name }}-api-health'
+          - id:   '{{ matterbridge_service_name }}-health'
             name: 'MatterBridge API health'
-            type: 'http'
-            http: 'http://localhost:{{ matterbridge_api_port }}/api/health'
+            type: 'tcp'
+            tcp:  '0.0.0.0:{{ matterbridge_api_port }}'

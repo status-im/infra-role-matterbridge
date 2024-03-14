@@ -16,7 +16,7 @@ matterbridge_nick: bridge
 matterbridge_ens_name: bridge.stateofus.eth
 
 # configuration for API
-matterbridge_api_enabled: false
+matterbridge_api_enabled: true
 matterbridge_api_port: 4242
 
 # configuration for gateways
