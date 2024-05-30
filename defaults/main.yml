@@ -5,7 +5,7 @@ matterbridge_compose_file: '{{ matterbridge_service_path }}/docker-compose.yml'
 
 # container
 matterbridge_version: 'v1.26.0-status'
-matterbridge_cont_image: 'statusteam/matterbridge:{{ matterbridge_version }}'
+matterbridge_cont_image: 'harbor.status.im/status-im/matterbridge:{{ matterbridge_version }}'
 matterbridge_cont_name: '{{ matterbridge_service_name }}'
 matterbridge_cont_vol: '{{ matterbridge_service_path }}/app'
 matterbridge_cont_env: {}
