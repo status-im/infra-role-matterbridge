@@ -24,4 +24,4 @@
     dest:  '{{ matterbridge_cont_vol }}/config/node.json'
     owner: 'dockremap'
     group: 'docker'
-  register: config_file
+  register: node_config_file
