@@ -26,6 +26,6 @@ matterbridge_gateways: []
 matterbridge_bridges: {}
 
 # general container management
-compose_recreate: 'smart'
+compose_recreate: 'auto'
 compose_state: 'present'
-compose_restart: false
+compose_pull: 'always'
