@@ -69,7 +69,7 @@ gateway:
         channel: "{{ discord_srv.ch }}"
         {% if not matterbridge_bridges['discord'][discord_srv.srv].get('AutoWebhooks', False) -%}
         options:
-          WebhookURL: "{{lookup("bitwarden", "Discord/"+discord_srv.srv+"/webhooks", field=discord_srv.ch)}}"
+          WebhookURL: "{{ discord_srv.webhook_url }}"
         {%- endif %}
     {% endfor %}
 
