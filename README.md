@@ -25,9 +25,9 @@ matterbridge_bridges:
       RemoteNickFormat: '{NICK}@{PROTOCOL}'
 
 matterbridge_gateways:
-  - { status: "tech",   discord: [{ srv: "status-pub", ch: "tech" }] }
-  - { status: "music",  discord: [{ srv: "status-pub", ch: "music" }] }
-  - { status: "movies", discord: [{ srv: "status-pub", ch: "movies" }] }
+  - { status: "tech",   discord: [{ srv: "status-pub", ch: "tech",   id: "123123123" }] }
+  - { status: "music",  discord: [{ srv: "status-pub", ch: "music",  id: "121212124" }] }
+  - { status: "movies", discord: [{ srv: "status-pub", ch: "movies", id: "121212125" }] }
 ```
 You can also provide environment variables to the container:
 ```
@@ -43,7 +43,7 @@ Currently only a single API (called `api`) is supported.
 It can be used in a gateway like this:
 
 ```
-- { discord: [{ srv: "vac", ch: "waku" }], api: ["api"]}
+- { discord: [{ srv: "vac", ch: "waku", id: "121212125" }], api: ["api"]}
 ```
 
 The API is running on port 4242 by default (`matterbridge_api_port`). More info
@@ -51,7 +51,7 @@ about the API can be found on the [Matterbridge wiki](https://github.com/42wim/m
 
 # Known Issues
 
-If your bridge is posting in a Discord channel but doesn't receive mesages from it you might have to adjust the channel-level permissions to give the bot message read rights.
+If your bridge is posting in a Discord channel but doesn't receive messages from it you might have to adjust the channel-level permissions to give the bot message read rights.
 
 # Links
 

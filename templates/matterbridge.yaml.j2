@@ -65,8 +65,9 @@ gateway:
     {% endfor %}
     {% for discord_srv in gtw.get("discord", []) %}
 
+      # name : "{{ discord_srv.ch }}"
       - account: "discord.{{ discord_srv.srv }}"
-        channel: "{{ discord_srv.ch }}"
+        channel: "{{ 'ID:'+discord_srv.id if discord_srv.id else discord_srv.ch }}"
         {% if not matterbridge_bridges['discord'][discord_srv.srv].get('AutoWebhooks', False) and discord_srv.get('webhook_url') -%}
         options:
           WebhookURL: "{{ discord_srv.webhook_url }}"
