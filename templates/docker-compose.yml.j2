@@ -29,3 +29,11 @@ services:
     ports:
       - '{{ matterbridge_api_port }}:{{ matterbridge_api_port }}'
 {% endif %}
+{% if matterbridge_external_network %}
+    networks:
+      - {{ matterbridge_external_network }}
+
+networks:
+  {{ matterbridge_external_network }}:
+    external: true
+{% endif %}

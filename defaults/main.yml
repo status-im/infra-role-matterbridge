@@ -9,6 +9,7 @@ matterbridge_cont_image: 'harbor.status.im/status-im/matterbridge:{{ matterbridg
 matterbridge_cont_name: '{{ matterbridge_service_name }}'
 matterbridge_cont_vol: '{{ matterbridge_service_path }}/app'
 matterbridge_cont_env: {}
+matterbridge_external_network: ''
 
 # general config
 matterbridge_debug: false
