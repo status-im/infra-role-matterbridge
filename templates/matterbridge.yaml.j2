@@ -34,7 +34,7 @@ gateway:
 
 {% endif %}
 {% for gtw in matterbridge_gateways %}
-  - name: "{{ gtw.status | default('bridge#'+(loop.index|string)) | mandatory }}"
+  - name: "{{ gtw.name | default(gtw.status | default('bridge#'+(loop.index|string))) }}"
     enable: "true"
     inout:
     {% if gtw.get("status", false) and not gtw.get("private", false) %}
@@ -57,6 +57,11 @@ gateway:
 
       - account: "telegram.autobot"
         channel: "{{ gtw.telegram }}"
+    {% endif %}
+    {% if gtw.get("signal", false) %}
+
+      - account: "signal.bridge"
+        channel: "{{ gtw.signal }}"
     {% endif %}
     {% for slack_srv in gtw.get("slack", []) %}
 
