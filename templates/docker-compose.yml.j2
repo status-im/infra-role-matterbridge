@@ -4,12 +4,14 @@ services:
   app:
     container_name: '{{ matterbridge_cont_name }}'
     image: '{{ matterbridge_cont_image }}'
+    memswap_limit: '{{ matterbridge_mem_limit }}'
     deploy:
       restart_policy:
-        condition: 'on-failure'
-        max_attempts: 3
+        condition: 'any'
         delay: '10s'
-        window: '60s'
+      resources:
+        limits:
+          memory: '{{ matterbridge_mem_limit }}'
 {% if matterbridge_cont_env %}
     environment:
 {% for key,val in matterbridge_cont_env.items() %}
